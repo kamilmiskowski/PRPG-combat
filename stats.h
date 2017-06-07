@@ -8,8 +8,11 @@ class stats
 	int dexterity;		int dexmod;	
 	int constitution; 	int conmod;
 	int intelligence; 	int intmod;
+						int dmgmod;
 public:
+	stats(){};
 	stats (int);
+	stats &operator= (const stats& rst);
 	int getstr(){return strenght;};
 	int getdex(){return dexterity;};
 	int getcon(){return constitution;};
@@ -18,6 +21,7 @@ public:
 	int getdexmod(){return dexmod;};
 	int getconmod(){return conmod;};
 	int getintmod(){return intmod;};
+	int getdmgmod(){return dmgmod;};
 };
 
  stats::stats(int prof)
@@ -30,6 +34,7 @@ public:
 		dexterity=8+diceroll(4,1);		dexmod=(dexterity-10)/2;
 		constitution=10+diceroll(6,1);	conmod=(constitution-10)/2;
 		intelligence=8;					intmod=(intelligence-10)/2;
+										dmgmod=strmod;
 		break;
 	
 	case 2: //archer
@@ -38,6 +43,7 @@ public:
 		dexterity=12+diceroll(8,1);		dexmod=(dexterity-10)/2;
 		constitution=8+diceroll(4,1);	conmod=(constitution-10)/2;
 		intelligence=8;					intmod=(intelligence-10)/2;
+										dmgmod=dexmod;
 		break;
 	
 	case 3: //mage
@@ -46,8 +52,24 @@ public:
 		dexterity=10+diceroll(6,1);		dexmod=(dexterity-10)/2;
 		constitution=8;					conmod=(constitution-10)/2;
 		intelligence=12+diceroll(8,1);	intmod=(intelligence-10)/2;
+										dmgmod=intmod;
 		break;
 	
 	}
 	
+}
+
+stats & stats::operator= (const stats& rst)
+{
+	
+	strenght=rst.strenght;
+	dexterity =rst.dexterity ;
+	constitution =rst.constitution ;
+	intelligence =rst.intelligence ;
+	strmod =rst.strmod ;
+	dexmod =rst.dexmod ;
+	conmod =rst.conmod ;
+	intmod =rst.intmod ;
+	dmgmod =rst.dmgmod ;
+
 }
