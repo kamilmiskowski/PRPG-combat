@@ -15,7 +15,7 @@ class creature
 public:
 	creature(int);
 	int look(creature);
-	void attack(creature&);	
+
 
 	int getx(){return x;};	
 	void setx(int a){x=a;}; 
@@ -110,19 +110,6 @@ int creature::look(creature enemy)
 	return moves;	
 	
 }
-
-void creature::attack(creature &enemy)
-{
-	if(look(enemy)<=range)
-	{
-		if(diceroll(20,1)+getstat().getdmgmod()>=enemy.getAC()){enemy.decreaseHP(diceroll(getDMGdie(),1)+getstat().getdmgmod());}
-		else cout<<"You missed";
-		
-	} else cout<<"Enemy out of range";
-}
-
-
-
 
 
 

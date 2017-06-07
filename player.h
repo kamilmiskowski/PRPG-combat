@@ -3,6 +3,8 @@ class Player : public creature
 	public:
 		Player(int prof):creature(prof){};
 		void move(int);
+		void attack(creature&);	
+		void statusbar();
 };
 
 void Player::move(int m)
@@ -40,6 +42,24 @@ void Player::move(int m)
 			break;
 	}
 }
+
+
+void Player::statusbar()
+{
+	cout<<"HP:"<<getHP()<<"/"<<getHPmax()<<"   MP:"<<getMP()<<"/"<<getMPmax()<<"   Range:"<<getrange()<<"   x:"<<getx()<<"   y:"<<gety()<<endl;
+}
+
+void Player::attack(creature &enemy)
+{
+	if(look(enemy)<=getrange())
+	{
+		if(diceroll(20,1)+getstat().getdmgmod()>=enemy.getAC()){enemy.decreaseHP(diceroll(getDMGdie(),1)+getstat().getdmgmod());}
+		else cout<<"You missed";
+		
+	} else cout<<"Enemy out of range"<<endl;;
+}
+
+
 
 
 
