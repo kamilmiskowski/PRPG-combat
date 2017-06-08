@@ -1,0 +1,16 @@
+The game starts by user's choice between 3 classes:
+1. Warrior - Heavy armored with highest HP, but clow and can fight only in meele range
+2. Archer - Highest range, medium armor and highest speed
+3. Mage - Highest damage, but wears no armor
+
+During the game player can preform one of 3 actions. Move, attack or wait.
+The game is meant to be played on numerical keyboard witch helps witch moving. 
+By entering one of the following numbers (1,2,3,4,6,7,8,9) player will make one move in the diretion the 
+key is placed in the numerical keyboard. For example 7 would be a North West move. 
+Player can move as long as he has any MovePionts left. 
+When player's MP=0 he can only attack or wait.
+Preforming an attack or wait ation will end the player's round.
+Attacking an enemy that is outside of player's range will end with an automatic failure.
+If player escapes battelground, that would mean that he fleed from the battle.
+Fleeing from the battle means defeat and will end the game.
+The game ends when player's or npc's HP will drop to 0. 
