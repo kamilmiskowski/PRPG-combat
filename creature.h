@@ -1,6 +1,6 @@
 
 
-class creature
+class creature	//Basic data that needs to be included both in Player, and NPC class
 {
 	int x;
 	int y;
@@ -16,6 +16,7 @@ public:
 	creature(int);
 	int look(creature);
 
+	
 
 	int getx(){return x;};	
 	void setx(int a){x=a;}; 
@@ -45,7 +46,7 @@ public:
 	
 };
 
-creature::creature(int prof)
+creature::creature(int prof) //Creates a full set of statistics for both NPC and Player, based on user's choice
 {
 	
 	stats st(prof);
@@ -55,7 +56,7 @@ creature::creature(int prof)
 		case 1:
 		
 			stat=st;
-			HPmax=60/prof;
+			HPmax=(60/prof)+(stat.getconmod()*5);
 			HP=HPmax;
 			AC=19-(3*prof);
 			MPmax=4;
@@ -66,7 +67,7 @@ creature::creature(int prof)
 		case 2:
 			
 			stat=st;
-			HPmax=60/prof;
+			HPmax=(60/prof)+(stat.getconmod()*5);
 			HP=HPmax;
 			AC=19-(3*prof);
 			MPmax=6;
@@ -77,10 +78,10 @@ creature::creature(int prof)
 		case 3:
 			
 			stat=st;
-			HPmax=60/prof;
+			HPmax=(60/prof)+(stat.getconmod()*5);
 			HP=HPmax;
 			AC=19-(3*prof);
-			MPmax=5;
+			MPmax=6;
 			MP=MPmax;
 			range=4;
 			DMGdie=10;	
@@ -89,7 +90,7 @@ creature::creature(int prof)
 	}
 }
 
-int creature::look(creature enemy)
+int creature::look(creature enemy) //Returns a distance to given creature in moves
 {
 	int moves=0;
 	int vx=getx();
@@ -110,7 +111,6 @@ int creature::look(creature enemy)
 	return moves;	
 	
 }
-
 
 
 

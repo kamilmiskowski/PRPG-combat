@@ -4,7 +4,7 @@ using namespace std;
 
 class stats
 {
-	int strenght; 		int strmod;	
+	int strenght; 		int strmod;	 //Standard D&D statistics and their modifiers
 	int dexterity;		int dexmod;	
 	int constitution; 	int conmod;
 	int intelligence; 	int intmod;
@@ -24,7 +24,7 @@ public:
 	int getdmgmod(){return dmgmod;};
 };
 
- stats::stats(int prof)
+ stats::stats(int prof) // Creates statistics appropriate for selected class
 {
 	switch(prof)
 	{

@@ -1,31 +1,28 @@
-char hue=219;
- char huez=178;
 
- char T[20][40];
- 
- void fillT()
- {
- 	 for(int i=0;i<20;i++)
- 	 {
- 	   	for(int j=0;j<40;j++) T[i][j]=219;
-	 }
- }
- 
-void show(Player player, NPC npc)
+
+
+void show(Player player, NPC npc) //Prints battleground on the screen showing NPC'a, and Player's position
 {
+	
 	T[player.gety()][player.getx()]=206;
 	T[npc.gety()][npc.getx()]=207;
+	
 	for(int i=0;i<20;i++)
 	{
-		for(int j=0;j<40;j++) cout<<T[i][j];
+		for(int j=0;j<40;j++) cout<<T[19-i][j];
 		cout<<endl;
 	}
-	T[player.gety()][player.getx()]=219;
-	T[npc.gety()][npc.getx()]=219;
-		player.statusbar();
+	
+	if(player.gety()<5||player.gety()>15)T[player.gety()][player.getx()]=178;
+		else T[player.gety()][player.getx()]=219;
+		
+	if(npc.gety()<5||npc.gety()>15) T[npc.gety()][npc.getx()]=178;
+		else T[npc.gety()][npc.getx()]=219;
+		
+	player.statusbar(npc);
 }
 
-int profchoice ()
+int profchoice () //Asks user to choose his character's proffesion
 {
 	int i;
 	do
@@ -51,17 +48,29 @@ void game(Player& player,NPC& npc)
 	{
 		int i;
 	
-		
 		   	while(true)
 			   {
+			   	  
 				cin>>i;
-			   	if(i>=1&&i<=9&&i!=5){player.move(i);show(player,npc);} 
-			   	if(i==5){player.attack(npc);show(player,npc); break;}
+			   	if(i>=1&&i<=9&&i!=5)
+				   {
+				  
+				   player.move(i);
+				   if (player.fleecheck()==true) return;  
+				   show(player,npc);
+				  
+				   } 
+			   	if(i==5){player.attack(npc); break;}
 				if(i==0)break;   
 			   }
+		 
+		if(npc.deathcheck()==true) break;   
 		npc.seek(player);
 		npc.attack(player);
+		if(player.deathcheck()==true) break;
 		npc.setMP(npc.getMPmax());
+		player.setMP(player.getMPmax());
+		show(player,npc);
 	
 	}
 }

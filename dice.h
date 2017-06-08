@@ -1,7 +1,7 @@
 
 
 
-int diceroll(int die, int amount)
+int diceroll(int die, int amount)	//Returns sum of random numbers form range (1, die). 
 {
 	int outcome=0;
 	for(int i=0; i<amount; i++)
