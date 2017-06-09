@@ -24,6 +24,6 @@ int main()
 	npc.sety(10);
 
 	game(player, npc);
-	
+	system("PAUSE");
     return 0;       
 }
